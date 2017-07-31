@@ -1,0 +1,36 @@
+<template>
+  <div class="hello">
+    <h2>{{ fromdetails }}</h2>
+    <router-link to="/details">
+      <yd-button type="danger">
+        订单详情
+      </yd-button>
+    </router-link>
+    <router-link to="/list">
+      <yd-button bgcolor="#0060BC" color="#FFF">
+        订单列表
+      </yd-button>
+    </router-link>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'hello',
+  data () {
+    return {
+      msg: 'Welcome to Your Vue.js App'
+    }
+  },
+  computed: {
+    fromdetails(){
+        return this.$store.state.author;
+    }
+  }
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style lang="less" scoped>
+
+</style>
