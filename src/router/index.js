@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import index from '@/components/index'
 import details from '@/components/details'
 import lists from '@/components/lists'
+import login from '@/components/login'
 
 Vue.use(Router);
 
@@ -21,6 +22,10 @@ export default new Router({
     {
       path: '/lists',
       component: lists
+    },
+    {
+      path: '/login',
+      component: login
     }
   ]
 })

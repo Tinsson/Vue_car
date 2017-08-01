@@ -55,4 +55,7 @@ export default {
   white-space: -moz-pre-wrap;
   word-wrap: break-word;
 }
+  body{
+    background-color: #FFF;
+  }
 </style>
