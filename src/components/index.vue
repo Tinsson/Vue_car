@@ -6,7 +6,7 @@
         订单详情
       </yd-button>
     </router-link>
-    <router-link to="/list">
+    <router-link to="/lists">
       <yd-button bgcolor="#0060BC" color="#FFF">
         订单列表
       </yd-button>

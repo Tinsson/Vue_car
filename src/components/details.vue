@@ -112,7 +112,8 @@
         rate: 5,
         rateInfo: '好评',
         mobile: '',
-        access: ''
+        access: '',
+        user_id: '18'
       }
     },
     methods: {
@@ -123,14 +124,17 @@
         },
         subInfo(){
             var data = {
-              access: this.access
+              access: this.access,
+              user_id: this.user_id
             };
             this.$ajax({
               method: 'post',
               url: '/api/access',
               data: data,
             }).then(function(d){
-                console.log(d);
+                if(d.status == 1){
+                    alert(d.msg);
+                }
             }).catch(function(){
                 console.log(2222);
             })

@@ -15,4 +15,3 @@ app.get('*',function(req,res){
 });
 
 app.listen(8088);
-console.log('success');
