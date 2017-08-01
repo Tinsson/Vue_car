@@ -28,7 +28,18 @@ router.post('/api/access',(req,res)=>{
 
 router.post('/api/getAccess',(req,res)=>{
   let user_id = req.body.user_id;
-  models.subAc.find({user_id:18},function(err,result){
+  models.subAc.find({user_id:18},["user_id","access","time"],function(err,result){
+    if(err){
+      res.send(err);
+    }else{
+      res.send(result);
+    }
+  })
+});
+
+router.post('/api/updateAcc',(req,res)=>{
+  let access = req.body.access;
+  models.subAc.update({access: access},{user_id: 20},(err,result)=>{
     if(err){
       res.send(err);
     }else{
