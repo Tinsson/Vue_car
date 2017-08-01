@@ -34,9 +34,13 @@ router.post('/login/register',function(req,res){
     mobile: req.body.mobile,
     password: req.body.password
   };
+  let systemErr = {
+      status: 0,
+      msg: "系统繁忙";
+  };
   models.details.find({mobile: req.body.mobile},function(err,result){
     if(err){
-      console.log(err);
+      res.send(systemErr);
     }else{
       if(result.length > 0){
         let data = {
@@ -49,7 +53,7 @@ router.post('/login/register',function(req,res){
   });
   models.details.save(register,function(err,result){
     if(err){
-      res.send(err);
+      res.send(systemErr);
     }else{
       res.send(result);
     }
