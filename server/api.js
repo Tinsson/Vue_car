@@ -28,8 +28,7 @@ router.post('/api/access',(req,res)=>{
 
 router.post('/api/getAccess',(req,res)=>{
   let user_id = req.body.user_id;
-  console.log(user_id);
-  models.subAc.find({'user_id': 18},function(err,result){
+  models.subAc.find({user_id:18},function(err,result){
     if(err){
       res.send(err);
     }else{
