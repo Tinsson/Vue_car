@@ -5,7 +5,7 @@ const router = express.Router();
 
 
 router.post('/api/access',(req,res)=>{
-  let newAccess = new models.subAc({
+  let newAccess = new models.details({
     access: req.body.access,
     user_id: req.body.user_id
   });
@@ -28,7 +28,7 @@ router.post('/api/access',(req,res)=>{
 
 router.post('/api/getAccess',(req,res)=>{
   let user_id = req.body.user_id;
-  models.subAc.find({user_id:18},["user_id","access","time"],function(err,result){
+  models.details.find({user_id:30},["user_id","access","time"],function(err,result){
     if(err){
       res.send(err);
     }else{
@@ -39,7 +39,7 @@ router.post('/api/getAccess',(req,res)=>{
 
 router.post('/api/updateAcc',(req,res)=>{
   let access = req.body.access;
-  models.subAc.update({access: access},{user_id: 20},(err,result)=>{
+  models.details.update({access: access},{user_id: 20},(err,result)=>{
     if(err){
       res.send(err);
     }else{
