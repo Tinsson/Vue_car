@@ -38,18 +38,31 @@
     },
     methods: {
       sendCode() {
-        this.$dialog.loading.open('发送中...');
-        setTimeout(() => {
-          this.start = true;
-          this.$dialog.loading.close();
-
+        let phoneReg = /^[1][34578][0-9]{9}$/;
+        if(!phoneReg.test(this.mobile)){
           this.$dialog.toast({
-            mes: '已发送',
-            icon: 'success',
-            timeout: 1500
+            mes: '手机号码不正确！',
+            timeout: 1000,
+            icon: 'error'
           });
-
-        }, 1000);
+        }else{
+          this.$dialog.loading.open('发送中...');
+          this.$ajax({
+            method: 'post',
+            url: '/register/proof',
+            data: {mobile: this.mobile}
+          }).then((d)=>{
+              if(d.data.status === 1){
+                this.start = true;
+                this.$dialog.loading.close();
+                this.$dialog.toast({
+                  mes: '已发送',
+                  icon: 'success',
+                  timeout: 1500
+                });
+              }
+          });
+        }
       },
       login(){
           let phoneReg = /^[1][34578][0-9]{9}$/;
@@ -66,23 +79,54 @@
               icon: 'error'
             });
           }else{
-              this.$router.push({
+              /*this.$router.push({
                 path: '/details'
               });
-              return false;
-              /*let loginInfo = {
-                mobile: this.mobile
+              return false;*/
+              let loginInfo = {
+                mobile: this.mobile,
+                password: 12345
               };
               this.$ajax({
                 method: 'post',
-                url: '/login/checkInDex',
+                url: '/login/checkIn',
                 data: loginInfo
               }).then((d)=>{
                   this.$router.push({
                     path: '/details'
                   })
-              })*/
+              })
           }
+      },
+      register(){
+        let phoneReg = /^[1][34578][0-9]{9}$/;
+        if(!phoneReg.test(this.mobile)){
+          this.$dialog.toast({
+            mes: '手机号码不正确！',
+            timeout: 1000,
+            icon: 'error'
+          });
+        }else if(this.vertify.length !== 6){
+          this.$dialog.toast({
+            mes: '验证码不正确',
+            timeout: 1000,
+            icon: 'error'
+          });
+        }else {
+          let registerInfo = {
+            mobile: this.mobile,
+            proof: this.vertify
+          };
+          this.$ajax({
+            method: 'post',
+            url: '/register/codeProof',
+            data: registerInfo
+          }).then((d) => {
+            console.log(d);
+          }).catch((e) => {
+            console.log(e);
+          })
+        }
       }
     }
   }
@@ -98,7 +142,7 @@
     display: block;
     width: 3rem;
     height: 3rem;
-    background: url("../assets/logo.png") no-repeat center;
+    background: url("../assets/business.png") no-repeat center;
     background-size: cover;
   }
   .infoBox{

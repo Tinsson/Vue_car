@@ -1,7 +1,8 @@
-'use strict'
+'use strict';
 const express = require('express');
 const models = require('./db');
 const router = express.Router();
+const crypto = require('crypto');
 
 
 router.post('/api/access',(req,res)=>{

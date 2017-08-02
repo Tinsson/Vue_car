@@ -17,6 +17,11 @@ const detailsSchema = mongoose.Schema({
   logintime: {type: Date,default: Date.now}
 });
 
+const userSchema = mongoose.Schema({
+  mobile: {type: String},
+  password: {type: String}
+});
+
 const materialSchema = mongoose.Schema({
   m_id: {type: Number},
   name: {type:String},
@@ -43,7 +48,8 @@ const Models = {
   details: db.model('details',detailsSchema),
   material: db.model('material',materialSchema),
   business: db.model('business',businessSchema),
-  service: db.model('service', serviceSchema)
+  service: db.model('service', serviceSchema),
+  user: db.model('user', userSchema)
 };
 
 module.exports = Models;

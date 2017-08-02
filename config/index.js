@@ -23,11 +23,18 @@ module.exports = {
   },
   dev: {
     env: require('./dev.env'),
-    port: 8089,
+    port: 8008,
     autoOpenBrowser: true,
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
+      '/register': {
+        target: 'http://localhost:8088/login',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/register': ''
+        }
+      },
       '/api': {
         target: 'http://localhost:8088/api',
         changeOrigin: true,
