@@ -80,20 +80,30 @@ router.post('/login/register',(req,res)=>{
 });
 
 router.post('/login/codeProof',(req,res)=>{
+  let mobile = req.body.mobile;
   let code = req.body.proof;
-  res.send(req.session.code === code);
+  res.send(req.session[mobile] === code);
 });
 
 router.post('/login/proof',(req,res)=>{
+
   let mobile = req.body.mobile;
   let code = randCode(6);
-  req.session.mobile = mobile;
-  req.session.code = code;
-  let info = {
-    status: 1,
-    code: req.session.code
-  };
-  res.send(info);
+  //判断手机号码已经接受验证码
+  if(req.session.hasOwnProperty(mobile)){
+    let info = {
+      status: 2,
+      msg: '60秒即可重发！'
+    };
+    res.send(info);
+  }else{
+    req.session[mobile] = code;
+    let info = {
+      status: 1,
+      code: req.session[mobile]
+    };
+    res.send(info);
+  }
 });
 
 

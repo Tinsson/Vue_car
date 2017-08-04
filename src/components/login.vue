@@ -54,10 +54,19 @@
           }).then((d)=>{
               if(d.data.status === 1){
                 this.start = true;
+                console.log(d.data.code[this.mobile]);
                 this.$dialog.loading.close();
                 this.$dialog.toast({
                   mes: '已发送',
                   icon: 'success',
+                  timeout: 1500
+                });
+              }else if(d.data.status === 2){
+                console.log(d.data.msg);
+                this.$dialog.loading.close();
+                this.$dialog.toast({
+                  mes:d.data.msg,
+                  icon: 'error',
                   timeout: 1500
                 });
               }
@@ -122,7 +131,7 @@
             url: '/register/codeProof',
             data: registerInfo
           }).then((d) => {
-            console.log(d);
+            console.log(d.data);
           }).catch((e) => {
             console.log(e);
           })
