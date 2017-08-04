@@ -131,7 +131,19 @@
             url: '/register/codeProof',
             data: registerInfo
           }).then((d) => {
-            console.log(d.data);
+            if(d.data.status === 1){
+                //验证成功
+              /*this.$router.push({
+                path: '/lists'
+              })*/
+            }else{
+                //验证失败
+              this.$dialog.toast({
+                mes: '验证码不正确',
+                timeout: 1000,
+                icon: 'error'
+              });
+            }
           }).catch((e) => {
             console.log(e);
           })
