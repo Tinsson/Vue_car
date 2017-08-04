@@ -151,7 +151,7 @@
     display: block;
     width: 3rem;
     height: 3rem;
-    background: url("../assets/business.png") no-repeat center;
+    background: url("../assets/logo.png") no-repeat center;
     background-size: cover;
   }
   .infoBox{
