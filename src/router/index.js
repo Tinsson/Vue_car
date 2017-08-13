@@ -4,6 +4,7 @@ import index from '@/components/index'
 import details from '@/components/details'
 import lists from '@/components/lists'
 import login from '@/components/login'
+import center from '@/components/center'
 
 Vue.use(Router);
 
@@ -26,6 +27,10 @@ export default new Router({
     {
       path: '/login',
       component: login
+    },
+    {
+      path: '/center',
+      component: center
     }
   ]
 })

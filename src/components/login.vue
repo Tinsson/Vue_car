@@ -20,9 +20,9 @@
         </yd-cell-group>
       </div>
     </div>
+    <p class="loginTip">未注册账号的手机号，登录时将自动完成注册，且代表您已阅读并同意<span class="protocol">《用户协议》</span></p>
     <div class="btnBox">
-      <yd-button bgcolor="#03a9f4" color="#FFF" size="large" @click.native="login">登录</yd-button>
-      <yd-button bgcolor="#0cbf54" color="#FFF" size="large" @click.native="register">注册</yd-button>
+      <yd-button bgcolor="#03a9f4" color="#FFF" size="large" @click.native="login">验证并登录</yd-button>
     </div>
   </div>
 </template>
@@ -74,40 +74,6 @@
         }
       },
       login(){
-          let phoneReg = /^[1][34578][0-9]{9}$/;
-          if(!phoneReg.test(this.mobile)){
-            this.$dialog.toast({
-              mes: '手机号码不正确！',
-              timeout: 1000,
-              icon: 'error'
-            });
-          }else if(this.vertify.length !== 6){
-            this.$dialog.toast({
-              mes: '验证码不正确',
-              timeout: 1000,
-              icon: 'error'
-            });
-          }else{
-              /*this.$router.push({
-                path: '/details'
-              });
-              return false;*/
-              let loginInfo = {
-                mobile: this.mobile,
-                password: 12345
-              };
-              this.$ajax({
-                method: 'post',
-                url: '/login/checkIn',
-                data: loginInfo
-              }).then((d)=>{
-                  this.$router.push({
-                    path: '/details'
-                  })
-              })
-          }
-      },
-      register(){
         let phoneReg = /^[1][34578][0-9]{9}$/;
         if(!phoneReg.test(this.mobile)){
           this.$dialog.toast({
@@ -170,6 +136,13 @@
     padding: 0 .5rem;
     .m-cell:after{
       border:none;
+    }
+  }
+  .loginTip{
+    padding: 0 .5rem;
+    font-size: .24rem;
+    .protocol{
+      color: #10aeff;
     }
   }
   .btnBox{
