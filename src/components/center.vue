@@ -51,14 +51,19 @@
         元
       </div>
     </div>
-    <div class="article">
+    <div class="article" v-for="item in artcle">
       <h2 class="sign">
         <span class="tyre"></span>
-        <span class="text">轮胎小贴士</span>
+        <span class="text">{{item.tip}}</span>
       </h2>
       <div class="content">
-        
+        <img class="artpic" src="../assets/tyre.jpg" alt="">
+        <div class="right">
+          <h2 class="title">{{item.title}}</h2>
+          <p class="text">{{item.text}}</p>
+        </div>
       </div>
+      <p class="check">查看详情</p>
     </div>
   </div>
 </template>
@@ -71,7 +76,16 @@
         name: '18368092182',
         score: 0,
         card: 5,
-        save: "0.00"
+        save: "0.00",
+        artcle: [{
+            tip: '轮胎小贴士',
+          title: '教你选择适合自己的轮胎',
+          text: '轮胎品牌繁多？复杂参数眼花缭乱？看到这一篇你就明白了。'
+        },{
+          tip: '保养小贴士',
+          title: '夏季汽车保养8项功课',
+          text: '夏季汽车保养必修课，让爱车健康的一堂课，学起来！'
+        }]
       }
     }
   }
@@ -236,6 +250,7 @@
   .article{
     background-color: #FFF;
     padding: .2rem;
+    margin-bottom: .2rem;
     .sign{
       padding: .1rem 0;
       display: flex;
@@ -255,6 +270,36 @@
         padding-left: .2rem;
         line-height: .6rem;
       }
+    }
+    .content{
+      padding: .2rem 0;
+      border-bottom: .5px solid #999;
+      display: flex;
+      justify-content: space-between;
+      .artpic{
+        width: 2rem;
+        height: 2rem;
+      }
+      .right{
+        width: 5rem;
+        padding-left: .1rem;
+        .title{
+          padding-top: .2rem;
+          font-size: .34rem;
+        }
+        .text{
+          padding-top: .15rem;
+          color: #8c8a8a;
+          font-size: .28rem;
+        }
+      }
+    }
+    .check{
+      text-align: center;
+      letter-spacing: 1px;
+      font-size: .26rem;
+      color: #888;
+      padding-top: .12rem;
     }
   }
 </style>
