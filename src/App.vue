@@ -43,6 +43,7 @@ export default {
   border-color: @pram1 @pram2 @pram3 @pram4;
 }
 /** 调色板 **/
+@theme: #F95259;
 @base: #663333;
 @complement1: spin(@base, 180);
 @complement2: darken(spin(@base, 180), 5%);
